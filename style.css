@@ -2424,3 +2424,7 @@ button:active {
     text-align: center;
     margin-bottom: 28px;
 }
+/* 그린 테마 미리보기 색상 */
+.theme-green {
+    background: #9ea76b;
+}
