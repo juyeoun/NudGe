@@ -1,0 +1,2426 @@
+/* Shall we? 통합 style.css */
+
+/* =========================
+   기본 색상
+========================= */
+
+:root {
+  --cream: #fff8e2;
+  --warm-white: #fffdf5;
+  --brown: #5e442e;
+  --pale-yellow: #f5df91;
+  --curtain-blue: #a8c5d8;
+  --curtain-shadow: #7397b0;
+  --pink: #d99aa5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--cream);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--cream);
+  color: var(--brown);
+  font-family: Arial, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+
+button,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* =========================
+   페이지 기본 설정
+========================= */
+
+.page {
+  display: none;
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  padding-bottom: 24px;
+  color: var(--brown);
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+#home {
+  display: block;
+}
+
+#home.home-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 70px);
+  padding: 42px 0 14px;
+  overflow: visible;
+  background: var(--cream);
+  color: var(--brown);
+}
+
+#home.home-page.dawn,
+#home.home-page.morning,
+#home.home-page.day,
+#home.home-page.sunset,
+#home.home-page.night,
+#home.home-page.midnight {
+  background: var(--cream);
+  color: var(--brown);
+}
+
+/* =========================
+   시간 / 날씨 / 위치
+========================= */
+
+.top-info {
+  position: relative;
+  flex: 0 0 auto;
+  z-index: 20;
+  width: 100%;
+  text-align: center;
+}
+
+#time {
+  margin: 0;
+  color: var(--brown);
+  font-family: "Arial Narrow", Bahnschrift, Arial, sans-serif;
+  font-size: 68px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -3px;
+  font-variant-numeric: tabular-nums;
+}
+
+#weather {
+  margin-top: 13px;
+  color: var(--brown);
+  opacity: 0.85;
+}
+
+#location {
+  margin-top: 5px;
+  color: var(--brown);
+  opacity: 0.7;
+}
+
+#refreshLocationButton {
+  margin-top: 8px;
+  padding: 6px 12px;
+  border: 1px solid rgba(94, 68, 46, 0.2);
+  border-radius: 20px;
+  background: rgba(250, 250, 247, 0.8);
+  color: var(--brown);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+/* =========================
+   하늘 / 창문
+========================= */
+
+.sky {
+  position: relative;
+  flex: 0 0 auto;
+  isolation: isolate;
+  width: calc(100% - 48px);
+  max-width: 430px;
+  height: 300px;
+  margin: 30px auto 0;
+  overflow: hidden;
+  border: 7px solid var(--warm-white);
+  border-radius: 4px;
+  background: linear-gradient(
+    to bottom,
+    #b9d9ed 0%,
+    #edf3f3 100%
+  );
+  box-shadow: 0 8px 18px rgba(94, 68, 46, 0.1);
+  pointer-events: none;
+}
+
+/* 창문 가운데 십자 프레임 */
+
+.sky::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to right,
+      transparent 49.2%,
+      rgba(250, 250, 247, 0.95) 49.2%,
+      rgba(250, 250, 247, 0.95) 50.8%,
+      transparent 50.8%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 49.2%,
+      rgba(250, 250, 247, 0.95) 49.2%,
+      rgba(250, 250, 247, 0.95) 50.8%,
+      transparent 50.8%
+    );
+}
+
+.sky::after {
+  content: none;
+}
+
+/* =========================
+   시간대별 하늘 색상
+========================= */
+
+.page.dawn .sky {
+  background: linear-gradient(
+    to bottom,
+    #d9b8c8 0%,
+    #ffe5c9 100%
+  );
+}
+
+.page.morning .sky {
+  background: linear-gradient(
+    to bottom,
+    #91c9e8 0%,
+    #f5e9d7 100%
+  );
+}
+
+.page.day .sky {
+  background: linear-gradient(
+    to bottom,
+    #55b5e5 0%,
+    #dff5ff 100%
+  );
+}
+
+.page.sunset .sky {
+  background: linear-gradient(
+    to bottom,
+    #e08470 0%,
+    #49325d 100%
+  );
+}
+
+.page.night .sky {
+  background: linear-gradient(
+    to bottom,
+    #111a42 0%,
+    #080b18 100%
+  );
+}
+
+.page.midnight .sky {
+  background: linear-gradient(
+    to bottom,
+    #050711 0%,
+    #000000 100%
+  );
+}
+
+/* =========================
+   달과 별
+========================= */
+
+.moon {
+  position: absolute;
+  top: 48px;
+  right: 100px;
+  z-index: 5;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #f4efdc;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+}
+
+.star {
+  position: absolute;
+  z-index: 5;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--warm-white);
+}
+
+.star1 {
+  top: 45px;
+  left: 24%;
+}
+
+.star2 {
+  top: 105px;
+  left: 57%;
+}
+
+.star3 {
+  top: 65px;
+  left: 73%;
+}
+
+/* =========================
+   커튼 공통
+   테두리 없이 파란색 천으로 표현
+========================= */
+
+.curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  width: 27%;
+  max-width: 120px;
+  background: var(--curtain-blue);
+  pointer-events: none;
+}
+
+/* 위쪽 물결 장식 */
+
+.curtain-left::before,
+.curtain-right::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 24%;
+  background: var(--curtain-blue);
+  border-radius: 0 0 50% 50%;
+}
+
+
+/* 왼쪽 커튼 */
+.curtain-left {
+    left: 0;
+    right: auto;
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        88% 20%,
+        78% 35%,
+        60% 48%,
+        35% 65%,
+        30% 70%,
+        38% 75%,
+        55% 100%,
+        0 100%
+    );
+}
+
+/* 오른쪽 커튼 */
+.curtain-right {
+    right: 0;
+    left: auto;
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 100%,
+        45% 100%,
+        62% 75%,
+        70% 70%,
+        65% 65%,
+        40% 48%,
+        22% 35%,
+        12% 20%
+    );
+}
+
+
+
+/* 커튼 묶음 끈 */
+
+.curtain-tie {
+  position: absolute;
+  top: 67%;
+  z-index: 11;
+  width: 100%;
+  height: 12px;
+  border-radius: 0;
+  background: #7397b0;
+  box-shadow: none;
+}
+
+.curtain-left .curtain-tie {
+  right: 0;
+}
+
+.curtain-right .curtain-tie {
+  left: 0;
+}
+
+/* =========================
+   오늘의 제안 카드
+========================= */
+
+.suggestion-card {
+  position: relative;
+  flex: 0 0 auto;
+  z-index: 20;
+  width: calc(100% - 48px);
+  max-width: 430px;
+  margin: 30px auto 0;
+  padding: 22px 20px 19px;
+  border: 1.5px solid rgba(250, 250, 247, 0.95);
+  border-radius: 22px;
+  background: rgba(250, 250, 247, 0.82);
+  color: var(--brown);
+  box-shadow: 0 8px 20px rgba(94, 68, 46, 0.1);
+  backdrop-filter: blur(15px);
+}
+
+.small-text {
+  margin: 0 0 8px;
+  color: rgba(94, 68, 46, 0.7);
+  font-size: 12px;
+}
+
+.suggestion-card h1 {
+  margin: 0 0 10px;
+  color: var(--brown);
+  font-size: 23px;
+  line-height: 1.4;
+}
+
+.suggestion-card p {
+  margin: 0 0 18px;
+  color: rgba(94, 68, 46, 0.82);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.button-row {
+  display: flex;
+  gap: 9px;
+  width: 100%;
+}
+
+.button-row button {
+  min-height: 42px;
+  padding: 10px 14px;
+  border: 1px solid rgba(94, 68, 46, 0.1);
+  border-radius: 14px;
+  font-size: 13px;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.button-row button:active {
+  transform: scale(0.98);
+}
+
+#tryButton {
+  flex: 1;
+  background: var(--pale-yellow);
+  color: var(--brown);
+}
+
+#randomButton {
+  background: #f4efdc;
+  color: var(--brown);
+}
+
+/* =========================
+   기록 화면
+========================= */
+
+#history {
+  padding: 35px 25px 100px;
+  background: var(--cream);
+  color: var(--brown);
+}
+
+.history-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.history-container h1,
+.history-container h2 {
+  color: var(--brown);
+}
+
+.history-date {
+  margin: 18px 0 10px;
+  color: var(--brown);
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.history-card {
+  margin-bottom: 12px;
+  padding: 16px;
+  border: 1px solid rgba(94, 68, 46, 0.1);
+  border-radius: 16px;
+  background: rgba(250, 250, 247, 0.85);
+  color: var(--brown);
+  box-shadow: 0 4px 12px rgba(94, 68, 46, 0.05);
+}
+
+.history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.history-item {
+  color: rgba(94, 68, 46, 0.9);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.favorite-button {
+  flex: 0 0 auto;
+  padding: 6px 8px;
+  border: 0;
+  background: transparent;
+  color: rgba(94, 68, 46, 0.65);
+  font-size: 18px;
+}
+
+.favorite-button.active {
+  color: #d9858e;
+}
+
+.empty-history {
+  padding: 36px 12px;
+  color: rgba(94, 68, 46, 0.65);
+  text-align: center;
+  line-height: 1.7;
+}
+
+/* =========================
+   일기 화면
+========================= */
+
+#diary {
+  min-height: 100vh;
+  padding: 45px 22px 120px;
+  background: var(--cream);
+  color: var(--brown);
+}
+
+.diary-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.diary-container h1,
+.diary-container h2,
+.diary-container p {
+  color: var(--brown);
+}
+
+.diary-subtitle {
+  margin: 8px 0 24px;
+  color: rgba(94, 68, 46, 0.7);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* =========================
+   달력
+========================= */
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.calendar-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.calendar-header button {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(94, 68, 46, 0.12);
+  border-radius: 50%;
+  background: var(--warm-white);
+  color: var(--brown);
+}
+
+.calendar-weekdays,
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.calendar-weekdays {
+  padding: 10px 0 12px;
+  color: rgba(94, 68, 46, 0.68);
+  font-size: 12px;
+  text-align: center;
+}
+
+.calendar-weekdays span:first-child {
+  color: #cc858d;
+}
+
+.calendar-weekdays span:last-child {
+  color: #789bb8;
+}
+
+.calendar-day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 1px solid rgba(217, 154, 165, 0.22);
+  border-radius: 13px;
+  background: rgba(255, 253, 245, 0.9);
+  color: var(--brown);
+  font-size: 14px;
+}
+
+.calendar-day.today {
+  border-color: #e6ca70;
+  background: #fff0b5;
+}
+
+.calendar-day.selected {
+  border-color: var(--pink);
+  background: #f2cbd0;
+}
+
+.calendar-day.empty {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* =========================
+   일기 작성창
+========================= */
+
+.diary-editor {
+  margin-top: 24px;
+  padding: 18px;
+  border: 1px solid rgba(94, 68, 46, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 253, 245, 0.92);
+  box-shadow: 0 5px 18px rgba(94, 68, 46, 0.06);
+  animation: diaryAppear 0.2s ease;
+}
+
+.diary-editor[hidden] {
+  display: none !important;
+}
+
+.diary-editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.diary-editor-header h2 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.diary-editor-header button {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(94, 68, 46, 0.08);
+  color: var(--brown);
+}
+
+#diaryText {
+  display: block;
+  width: 100%;
+  min-height: 190px;
+  padding: 13px;
+  resize: vertical;
+  border: 1px solid rgba(94, 68, 46, 0.2);
+  border-radius: 12px;
+  outline: none;
+  background: var(--warm-white);
+  color: var(--brown);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+#diaryText:focus {
+  border-color: #d99aa5;
+  box-shadow: 0 0 0 3px rgba(217, 154, 165, 0.13);
+}
+
+#diaryText::placeholder {
+  color: rgba(94, 68, 46, 0.55);
+}
+
+#saveDiary {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px 16px;
+  border: 1px solid rgba(94, 68, 46, 0.12);
+  border-radius: 12px;
+  background: var(--pale-yellow);
+  color: var(--brown);
+  font-weight: 700;
+}
+
+@keyframes diaryAppear {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   하단 탭
+========================= */
+
+.tab-bar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 70px;
+  padding: 0 12px env(safe-area-inset-bottom, 0);
+  border-top: 1px solid var(--warm-white);
+  background: rgba(255, 248, 226, 0.97);
+  box-shadow: 0 -4px 15px rgba(94, 68, 46, 0.05);
+  backdrop-filter: blur(12px);
+}
+
+.tab-bar button {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 100%;
+  padding: 8px 4px;
+  border: 0;
+  background: transparent;
+  color: rgba(94, 68, 46, 0.65);
+  font-size: 12px;
+}
+
+.tab-bar button.active {
+  color: var(--brown);
+  font-weight: 700;
+}
+
+.tab-bar.dawn {
+  background: rgba(255, 235, 218, 0.97);
+}
+
+.tab-bar.morning,
+.tab-bar.day {
+  background: rgba(255, 248, 226, 0.97);
+}
+
+.tab-bar.sunset {
+  background: rgba(248, 220, 207, 0.97);
+}
+
+.tab-bar.night,
+.tab-bar.midnight {
+  background: rgba(238, 233, 225, 0.97);
+}
+
+/* =========================
+   작은 화면 대응
+========================= */
+
+@media (max-width: 480px) {
+  #home.home-page {
+    padding-top: 35px;
+  }
+
+  #time {
+    font-size: 58px;
+    letter-spacing: -2.5px;
+  }
+
+  .sky {
+    width: calc(100% - 34px);
+    height: 275px;
+    margin-top: 26px;
+  }
+
+  .moon {
+    top: 43px;
+    right: 80px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .suggestion-card {
+    width: calc(100% - 30px);
+    padding: 20px 17px 18px;
+  }
+
+  .curtain {
+    width: 32%;
+  }
+
+  .curtain-tie {
+    height: 12px;
+  }
+
+  #history {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  #diary {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .calendar-weekdays,
+  .calendar-days {
+    gap: 5px;
+  }
+
+  .calendar-day {
+    border-radius: 11px;
+    font-size: 13px;
+  }
+
+  #diaryText {
+    min-height: 170px;
+  }
+}
+
+@media (max-width: 400px) {
+  #time {
+    font-size: 52px;
+  }
+
+  .sky {
+    height: 255px;
+  }
+
+  .suggestion-card {
+    width: calc(100% - 24px);
+  }
+
+  .calendar-weekdays,
+  .calendar-days {
+    gap: 5px;
+  }
+
+  .calendar-day {
+    border-radius: 10px;
+    font-size: 12px;
+  }
+}
+
+/* 주간 기록 통계 */
+#weeklyStats {
+    display: flex;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+#weeklyStats > div {
+    flex: 1;
+    padding: 14px 10px;
+    border-radius: 14px;
+    background: #fff0b5;
+    color: #72553e;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* 요일별 막대그래프 */
+#weeklyChart {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.chart-row {
+    display: grid;
+    grid-template-columns: 24px 1fr 35px;
+    align-items: center;
+    gap: 10px;
+    color: #72553e;
+    font-size: 13px;
+}
+
+.chart-track {
+    width: 100%;
+    height: 16px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #e7edf0;
+}
+
+.chart-bar {
+    height: 100%;
+    min-width: 0;
+    border-radius: 20px;
+    background: #a8c5d8;
+    transition: width 0.3s ease;
+}
+
+/* 기록 화면 디자인 */
+#history {
+    background: #fff8e8;
+    padding: 28px 16px 100px;
+}
+
+#history .history-container {
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+#history .history-container > h1 {
+    text-align: center;
+    font-size: 26px;
+    margin: 8px 0 24px;
+    letter-spacing: 2px;
+}
+
+/* 이번 주 기록 카드 */
+#history .weekly-summary,
+#history .activity-input {
+    padding: 18px;
+    margin-bottom: 18px;
+    border: 1px solid #eadfc9;
+    border-radius: 20px;
+    background: #fffdf6;
+    box-shadow: 0 4px 12px #6d523010;
+}
+
+#history .weekly-summary h2,
+#history .activity-input h2 {
+    margin-top: 0;
+    font-size: 17px;
+}
+
+
+/* 파란색 체크무늬 기록 카드 */
+#history .history-card {
+    background-color: #fffdf8;
+
+    /* 아주 연한 하늘색 깅엄 체크무늬 */
+    background-image:
+        repeating-linear-gradient(
+            to right,
+            transparent 0,
+            transparent 14px,
+            rgba(160, 199, 226, 0.12) 14px,
+            rgba(160, 199, 226, 0.12) 28px
+        ),
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 14px,
+            rgba(160, 199, 226, 0.12) 14px,
+            rgba(160, 199, 226, 0.12) 28px
+        );
+
+    background-size: 28px 28px;
+    background-blend-mode: multiply;
+}
+
+
+/* 날짜 라벨 */
+#history .history-date {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    margin: 18px 0 -16px 12px;
+    padding: 7px 17px;
+    border-radius: 50%;
+    background: #ffe779;
+    color: #654b30;
+    font-size: 13px;
+    font-weight: bold;
+    opacity: 1;
+}
+
+
+/* 날짜를 노란 라벨로 */
+#history .history-date {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    margin: 18px 0 -16px 12px;
+    padding: 7px 17px;
+    border-radius: 50%;
+    background: #ffe779;
+    color: #654b30;
+    font-size: 13px;
+    font-weight: bold;
+    opacity: 1;
+}
+
+/* 기록 내용 */
+#history .history-item {
+    margin: 8px 0;
+    color: #624a38;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* 즐겨찾기 */
+#history .favorite-button {
+    color: #987b60;
+}
+
+#history .favorite-button.active {
+    color: #e39b45;
+}
+
+/* 직접 기록하는 입력창 */
+#history #activityInput {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 44px;
+    padding: 12px;
+    border: 1px solid #e7dcc8;
+    border-radius: 14px;
+    background: #fffefa;
+    color: #624a38;
+    outline: none;
+}
+
+#history #activityInput:focus {
+    border-color: #a8c5d8;
+}
+
+#history #addActivityButton {
+    margin-top: 10px;
+    padding: 11px 18px;
+    border: none;
+    border-radius: 14px;
+    background: #ffe779;
+    color: #624a38;
+    font-weight: bold;
+}
+
+/* 작은 화면 */
+@media (max-width: 480px) {
+    #history {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    #history .weekly-summary,
+    #history .activity-input {
+        padding: 15px;
+    }
+}
+/* 기록 화면 글자 가독성 개선 */
+#history .history-card {
+    color: #594536;
+    line-height: 1.7;
+}
+
+#history .history-card h2,
+#history .history-card h3 {
+    color: #49372b;
+    font-weight: 700;
+}
+
+#history .history-card p,
+#history .history-card li {
+    color: #594536;
+    font-size: 16px;
+    line-height: 1.7;
+}
+/* 기록 화면 주방 컨셉 */
+#history .kitchen-header {
+    width: 100%;
+    margin: 0 auto 20px;
+    text-align: center;
+}
+
+#history .kitchen-header img {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+/* 기록 카드 글씨를 더 두껍게 */
+#history .history-card {
+    color: #59402e;
+    font-weight: 600;
+}
+
+#history .history-card h2,
+#history .history-card h3 {
+    color: #49372b;
+    font-weight: 800;
+}
+
+#history .history-card p,
+#history .history-card li {
+    color: #59402e;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* 주간 기록: 세로 막대그래프 */
+#weeklyChart {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    align-items: end;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+#weeklyChart .chart-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    min-width: 0;
+}
+
+#weeklyChart .chart-day,
+#weeklyChart .chart-count {
+    font-size: 12px;
+    color: #6d6258;
+}
+
+#weeklyChart .chart-track {
+    width: 100%;
+    max-width: 32px;
+    height: 110px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f2eee6;
+}
+
+#weeklyChart .chart-bar {
+    width: 100% !important;
+    min-height: 0;
+    border-radius: 12px 12px 4px 4px;
+    background: #9bc9e8;
+    transition: height 0.25s ease;
+}
+
+/* 날짜별 활동은 체크무늬 카드 하나에 묶기 */
+#historyList .history-card {
+    position: relative;
+    padding: 30px 18px 18px;
+}
+
+/* 날짜 라벨을 왼쪽 위로 이동 */
+#historyList .history-date {
+    display: inline-block;
+    position: relative;
+    margin: -4px 0 10px -8px;
+    padding: 6px 14px;
+    font-size: 13px;
+}
+
+/* 같은 날짜의 활동 목록 */
+#historyList .history-activities {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#historyList .history-activities p {
+    margin: 0;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+/* 기록 카드의 하트 버튼 숨기기 */
+#historyList .favorite-button {
+    display: none !important;
+}
+
+/* 작은 화면에서도 요일이 잘 보이도록 */
+@media (max-width: 420px) {
+    #weeklyChart {
+        gap: 4px;
+    }
+
+    #weeklyChart .chart-track {
+        height: 90px;
+    }
+
+    #weeklyChart .chart-day,
+    #weeklyChart .chart-count {
+        font-size: 11px;
+    }
+}
+
+/* ---------- 오늘의 기분 선택 ---------- */
+
+.mood-section .mood-options {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.mood-section .mood-options .mood-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 0;
+    min-height: 92px;
+    padding: 10px 3px;
+    border: 1px solid #eadfd1;
+    border-radius: 16px;
+    background: #fffdf8;
+    color: #725e4c;
+    font: inherit;
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: center;
+    white-space: normal;
+    overflow-wrap: break-word;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease,
+        transform 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mood-section .mood-button .mood-emoji {
+    font-size: 25px;
+    line-height: 1.2;
+}
+
+.mood-section .mood-options .mood-button.selected,
+.mood-section .mood-options .mood-button.active {
+    background: #fff0c2;
+    border: 2px solid #dfb34e;
+    color: #59452e;
+    transform: translateY(-2px);
+}
+
+.mood-section .mood-options .mood-button:focus-visible {
+    outline: 2px solid #bd9650;
+    outline-offset: 3px;
+}
+
+@media (max-width: 380px) {
+    .mood-section .mood-options {
+        gap: 4px;
+    }
+
+    .mood-section .mood-options .mood-button {
+        font-size: 10px;
+        min-height: 84px;
+        padding: 8px 2px;
+    }
+
+    .mood-section .mood-button .mood-emoji {
+        font-size: 22px;
+    }
+}
+
+/* 일기 사진: 원본 비율 유지 */
+
+#diaryPhotoPreview {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 10px;
+    width: 100%;
+    margin-top: 12px;
+}
+
+#diaryPhotoPreview img {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    object-fit: contain;
+    border-radius: 12px;
+    border: 1px solid var(--border-theme, #e8e2d6);
+    background: var(--card-theme-bg, #fffaf5);
+}
+
+/* ---------- 첫 방문 환영 팝업 ---------- */
+
+.welcome-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background: rgba(30, 32, 45, 0.45);
+    backdrop-filter: blur(5px);
+}
+
+.welcome-overlay[hidden] {
+    display: none;
+}
+
+.welcome-card {
+    width: 100%;
+    max-width: 360px;
+    padding: 32px 24px;
+    border-radius: 24px;
+    background: #fffaf5;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    text-align: center;
+    animation: welcomeAppear 0.3s ease-out;
+}
+
+.welcome-sparkle {
+    margin: 0 0 12px;
+    color: #d58da5;
+    font-size: 30px;
+}
+
+.welcome-card h2 {
+    margin: 0 0 12px;
+    color: #51464b;
+    font-size: 21px;
+}
+
+.welcome-description {
+    margin: 0 0 24px;
+    color: #a49a9b;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+#welcomeForm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#nicknameInput {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #eadde1;
+    border-radius: 12px;
+    outline: none;
+    background: #fff;
+    color: #51464b;
+    font: inherit;
+}
+
+#nicknameInput:focus {
+    border-color: #d58da5;
+}
+
+#welcomeStartButton {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: #dcecf6;
+    color: #455b6b;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+@keyframes welcomeAppear {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- 설정 화면 ---------- */
+.settings-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 20;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    background: rgba(255, 250, 245, 0.85);
+    color: #776b70;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.settings-page {
+    box-sizing: border-box;
+    min-height: 100%;
+    padding: 24px 20px 100px;
+    background: var(--settings-bg, #fffaf5);
+    color: #51464b;
+}
+
+.settings-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.settings-header h2 {
+    margin: 0;
+    font-size: 21px;
+}
+
+.settings-header button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: #f4e9e9;
+    color: #776b70;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.settings-card {
+    margin-bottom: 18px;
+    padding: 22px;
+    border: 1px solid #f0e5e5;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.settings-card h3 {
+    margin: 0 0 18px;
+    font-size: 17px;
+}
+
+.profile-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 12px;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #f8e5ec;
+    color: #b66f8a;
+    font-size: 32px;
+}
+
+.profile-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-upload-button {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 24px;
+    color: #a85d7b;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.settings-card > label:not(.profile-upload-button) {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+#settingsNicknameInput {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #eadde1;
+    border-radius: 12px;
+    background: white;
+    color: #51464b;
+    font: inherit;
+}
+
+#saveProfileButton {
+    width: 100%;
+    margin-top: 12px;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: #f4dfe8;
+    color: #765064;
+    font: inherit;
+    cursor: pointer;
+}
+
+.settings-description {
+    margin: -8px 0 16px;
+    color: #a49a9b;
+    font-size: 13px;
+}
+
+.theme-options {
+    display: flex;
+    gap: 12px;
+}
+
+.theme-button {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 8px;
+    border: 1px solid #eadde1;
+    border-radius: 14px;
+    background: white;
+    color: #51464b;
+    font: inherit;
+    cursor: pointer;
+}
+
+.theme-button.selected {
+    border: 2px solid #d58da5;
+}
+
+.theme-color {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+}
+
+.theme-pink {
+    background: #f0cbd9;
+}
+
+.theme-blue {
+    background: #c9e3f5;
+}
+
+/* 테마 색상 */
+body[data-theme="pink"] {
+    --settings-bg: #fff5f8;
+}
+
+body[data-theme="blue"] {
+    --settings-bg: #f2f9ff;
+}
+
+
+/* ---------- Shall we? 테마 팔레트 ---------- */
+
+body[data-theme="yellow"] {
+    --page-theme-bg: #feefb8;
+    --page-bg: #feefb8;
+    --card-theme-bg: #fffaf0;
+    --accent-theme: #f5d95c;
+    --text-theme: #514d45;
+    --border-theme: #e8dcae;
+    --curtain-theme: #c4dae8;
+    --curtain-blue: #c4dae8;
+    --curtain-tie-color: #91b6cb;
+    --activity-bg: #feefb8;
+    --record-bg: #c4dae8;
+}
+
+body[data-theme="green"] {
+    --page-theme-bg: #efe8ca;
+    --page-bg: #efe8ca;
+    --card-theme-bg: #faf8ed;
+    --accent-theme: #9ea76b;
+    --text-theme: #41462c;
+    --border-theme: #d8d8b5;
+    --curtain-theme: #9ea76b;
+    --curtain-blue: #9ea76b;
+    --curtain-tie-color: #7f8951;
+    --activity-bg: #9ea76b;
+    --record-bg: #efe8ca;
+}
+
+body[data-theme="pink"] {
+    --page-theme-bg: #f4dad4;
+    --page-bg: #f4dad4;
+    --card-theme-bg: #fff5f2;
+    --accent-theme: #ffc7c7;
+    --text-theme: #3c2218;
+    --border-theme: #e8b8b6;
+    --curtain-theme: #dd8c96;
+    --curtain-blue: #dd8c96;
+    --curtain-tie-color: #b96e79;
+    --activity-bg: #ffc7c7;
+    --record-bg: #f4dad4;
+}
+
+body[data-theme="white"] {
+    --page-theme-bg: #f6eddd;
+    --page-bg: #f6eddd;
+    --card-theme-bg: #fffaf2;
+    --accent-theme: #c7ced6;
+    --text-theme: #514f50;
+    --border-theme: #dbd9d9;
+    --curtain-theme: #c7ced6;
+    --curtain-blue: #c7ced6;
+    --curtain-tie-color: #7f7b7f;
+    --activity-bg: #dbd9d9;
+    --record-bg: #c7ced6;
+}
+
+
+
+/* 앱의 기본 배경과 글자색 */
+body {
+    background-color: var(--page-theme-bg, #fff5f8);
+    color: var(--text-theme, #51464b);
+}
+
+/* 각 화면 */
+.page {
+    background-color: var(--page-theme-bg, #fff5f8);
+    color: var(--text-theme, #51464b);
+}
+
+/* 홈 화면의 추천 카드 */
+.suggestion-card {
+    background-color: var(--card-theme-bg, #fffaf5);
+    color: var(--text-theme, #51464b);
+}
+
+/* 기록 화면의 카드 */
+.weekly-summary,
+.activity-input {
+    background-color: var(--card-theme-bg, #fffaf5);
+    color: var(--text-theme, #51464b);
+    border-color: var(--border-theme, #f0dce5);
+}
+
+/* 일기 화면 */
+.diary-editor {
+    background-color: var(--card-theme-bg, #fffaf5);
+    color: var(--text-theme, #51464b);
+}
+
+/* 아래쪽 탭 메뉴 */
+.tab-bar {
+    background-color: var(--card-theme-bg, #fffaf5);
+    border-color: var(--border-theme, #f0dce5);
+    color: var(--text-theme, #51464b);
+}
+
+/* 주요 버튼 */
+#tryButton,
+#addActivityButton,
+#saveDiary,
+.diary-save-button,
+#saveProfileButton {
+    background-color: var(--accent-theme, #f4dfe8);
+    color: var(--text-theme, #51464b);
+}
+
+/* 설정 화면도 같은 테마 사용 */
+.settings-page {
+    background-color: var(--page-theme-bg, #fff5f8);
+    color: var(--text-theme, #51464b);
+}
+
+/* 톱니바퀴 클릭 영역 수정 */
+.settings-button {
+    position: fixed !important;
+    top: max(16px, env(safe-area-inset-top)) !important;
+    right: 16px !important;
+    z-index: 99999 !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    box-sizing: border-box;
+
+    pointer-events: auto;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.curtain-left {
+    left: -8px !important;
+}
+
+.curtain-right {
+    right: -16px !important
+}
+
+
+/* 현재 선택된 하단 메뉴 */
+.tab-bar button.active {
+    background-color: var(--accent-theme, #dcecf6);
+    color: var(--text-theme, #455b6b);
+    border-color: var(--border-theme, #d7e8f5);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+
+/* ---------- 감정 선택창 테마 연결 ---------- */
+
+.mood-section .mood-options .mood-button {
+    background: var(--card-theme-bg, #fffdf8);
+    border-color: var(--border-theme, #eadfd1);
+    color: var(--text-theme, #725e4c);
+}
+
+.mood-section .mood-options .mood-button.selected,
+.mood-section .mood-options .mood-button.active {
+    background: var(--accent-theme, #dcecf6);
+    border: 2px solid var(--border-theme, #d7e8f5);
+    color: var(--text-theme, #455b6b);
+}
+
+.mood-section .mood-options .mood-button:focus-visible {
+    outline-color: var(--border-theme, #d7e8f5);
+}
+
+
+/* =========================
+   테마 연결: 기록 화면
+========================= */
+
+/* 날짜 라벨 */
+#history .history-date {
+    background: var(--accent-theme, #dcecf6);
+    color: var(--text-theme, #455b6b);
+}
+
+/* 기록 카드와 입력 영역 */
+#history .weekly-summary,
+#history .activity-input,
+#historyList .history-card {
+    background-color: var(--card-theme-bg, #fffaf5);
+    border-color: var(--border-theme, #f0dce5);
+}
+
+/* 기록 화면의 글자 */
+#history .history-item,
+#history .history-card,
+#history .history-card h2,
+#history .history-card h3,
+#history .history-card p,
+#history .history-card li {
+    color: var(--text-theme, #51464b);
+}
+
+/* 직접 기록하는 입력창 */
+#history #activityInput {
+    background-color: var(--card-theme-bg, #fffaf5);
+    color: var(--text-theme, #51464b);
+    border-color: var(--border-theme, #f0dce5);
+}
+
+#history #activityInput:focus {
+    border-color: var(--accent-theme, #dcecf6);
+}
+
+/* 주간 기록 그래프 */
+#weeklyChart .chart-bar {
+    background: var(--accent-theme, #dcecf6);
+}
+
+#weeklyChart .chart-track {
+    background: var(--page-theme-bg, #f2f9ff);
+}
+
+/* 기록 버튼 */
+#history #addActivityButton {
+    background: var(--accent-theme, #dcecf6);
+    color: var(--text-theme, #455b6b);
+}
+
+
+/* =========================
+   테마 연결: 하단 메뉴
+========================= */
+
+.tab-bar button.active {
+    background-color: var(--accent-theme, #dcecf6);
+    color: var(--text-theme, #455b6b);
+    box-shadow: inset 0 -3px 0 var(--border-theme, #d7e8f5);
+    border-radius: 12px;
+}
+
+
+/* 하단 바: 테마에 맞춘 아주 연한 배경 */
+.tab-bar {
+    background: var(--page-theme-bg, #fffefa);
+    border-top: 1px solid var(--border-theme, #f0dce5);
+    box-shadow: 0 -2px 12px rgba(60, 45, 35, 0.04);
+    padding: 0;
+    gap: 0;
+}
+
+/* 하단 메뉴 버튼: 칸 전체를 균등하게 사용 */
+.tab-bar button {
+    flex: 1;
+    height: 100%;
+    margin: 0;
+    padding: 8px 4px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: var(--text-theme, #51464b);
+    transition: background-color 0.2s ease;
+}
+
+/* 현재 선택된 페이지: 칸을 꽉 채우는 각진 색상 */
+.tab-bar button.active {
+    height: 100%;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: var(--accent-theme, #f4dfe8);
+    color: var(--text-theme, #51464b);
+    box-shadow: none;
+    font-weight: 700;
+}
+
+/* 홈 화면을 전체적으로 조금 더 오밀조밀하게 */
+#home.home-page {
+    gap: 0;
+}
+
+/* 시계, 날씨, 위치, 현재 위치 버튼 간격 */
+#home .top-info {
+    gap: 3px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* 시계 */
+#home #time {
+    margin-top: 0;
+    margin-bottom: 4px;
+    line-height: 1.1;
+}
+
+/* 날씨와 온도 정보 */
+#home #weather {
+    margin-top: 0;
+    margin-bottom: 3px;
+    line-height: 1.3;
+}
+
+/* 현재 위치 */
+#home #location {
+    margin-top: 0;
+    margin-bottom: 2px;
+    line-height: 1.3;
+}
+
+/* 현재 위치 새로고침 버튼 */
+#home #refreshLocationButton {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* 시계부터 추천 카드까지 세로 공간 조정 */
+#home .sky {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#home .suggestion-card {
+    margin-top: 24Spx;
+}
+/* 홈 화면 전체를 아래로 이동 */
+#home.home-page {
+    padding-top: 70px;
+}
+
+/* 시계·날씨·위치 묶음을 조금 위로 */
+#home .top-info {
+    transform: translateY(-12px);
+}
+
+/* 추천 카드만 아래로 */
+#home .suggestion-card {
+    transform: translateY(25px);
+}
+
+/* 시계를 가로로 넓게 */
+#home #time {
+    width: 100%;
+    text-align: center;
+    letter-spacing: 3px;
+    transform: scaleX(1.15);
+}
+/* 하단바를 화면에 고정 */
+.tab-bar {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+/* 홈 화면에서만 스크롤 없애기 */
+#home.home-page {
+    height: calc(100dvh - 70px);
+    min-height: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* 홈 화면에서 하단바를 조금 위로 올리기 */
+#home.home-page ~ .tab-bar {
+    bottom: 12px;
+}
+
+/* 하단바가 떠 있는 느낌의 잔상 방지 */
+.tab-bar {
+    transform: none;
+    box-shadow: 0 -2px 8px rgba(60, 45, 35, 0.04);
+}
+
+/* 일기 달력: 오늘 날짜는 핑크색 */
+#diary .calendar-days button.today,
+#diary .calendar-days button.is-today {
+    background: #f6dce7;
+    border: 1px solid #e9b9cc;
+    color: #75505e;
+    font-weight: 700;
+}
+
+/* 일기를 작성한 날짜 */
+#diary .calendar-days button.has-diary {
+    background: color-mix(in srgb, var(--accent-theme, #f4e8c8) 45%, white);
+    border: 1px solid var(--border-theme, #e8e2d6);
+    color: var(--text-theme, #514d45);
+}
+
+/* 오늘 날짜는 일기 작성 표시보다 핑크색 우선 */
+#diary .calendar-days button.today.has-diary,
+#diary .calendar-days button.is-today.has-diary {
+    background: #f6dce7;
+    border-color: #e9b9cc;
+    color: #75505e;
+}
+
+/* 날짜 선택 효과 */
+#diary .calendar-days button.selected {
+    outline: 2px solid var(--border-theme, #e8e2d6);
+    outline-offset: -2px;
+}
+
+/* 오늘 날짜와 선택 날짜가 겹치면 코랄색 우선 */
+#diary .calendar-days button.today.selected,
+#diary .calendar-days button.is-today.selected {
+    background: #e9b9cc !important;
+    border-color: #e9b9cc !important;
+    color: #514d45 !important;
+}
+
+/* =========================
+   일기 감정 선택 - 모던 가로형
+========================= */
+
+#diary .mood-section {
+    margin: 0 0 18px;
+}
+
+#diary .mood-options {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 7px;
+    width: 100%;
+}
+
+#diary .mood-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-width: 0;
+    padding: 12px 2px;
+    border: 1px solid var(--border-theme, #e8e2d6);
+    border-radius: 14px;
+    background: var(--card-theme-bg, #fffefa);
+    color: var(--text-theme, #514d45);
+    font-size: 12px;
+    transition: background 0.18s ease,
+                border-color 0.18s ease,
+                transform 0.18s ease;
+}
+
+#diary .mood-emoji {
+    font-size: 22px;
+    line-height: 1.2;
+}
+
+#diary .mood-button.selected,
+#diary .mood-button.active {
+    background: var(--accent-theme, #f4dfe8);
+    border-color: var(--border-theme, #e8b6c6);
+    font-weight: 600;
+}
+
+#diary .mood-button:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================
+   일기 입력창 - 테마색 포커스
+========================= */
+
+#diary #diaryText {
+    border: 1px solid var(--border-theme, #e8e2d6);
+    color: var(--text-theme, #514d45);
+    background: var(--card-theme-bg, #fffefa);
+    outline: none;
+    transition: border-color 0.18s ease,
+                box-shadow 0.18s ease;
+}
+
+#diary #diaryText:focus {
+    border-color: var(--accent-theme, #e8b6c6);
+    box-shadow: 0 0 0 3px var(--border-theme, #e8e2d6);
+}
+
+#diary #diaryText::placeholder {
+    color: var(--text-theme, #514d45);
+    opacity: 0.5;
+}
+
+
+/* =========================
+   사진 추가 - 작은 버튼
+========================= */
+
+#diary .photo-section {
+    margin-top: 18px;
+}
+
+#diary .photo-section-title {
+    margin: 0 0 10px;
+    color: var(--text-theme, #514d45);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+#diary #diaryPhotos {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+#diary .photo-add-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 36px;
+    padding: 0 14px;
+    border: 1px solid var(--border-theme, #e8e2d6);
+    border-radius: 999px;
+    background: var(--accent-theme, #f4dfe8);
+    color: var(--text-theme, #514d45);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.18s ease,
+                transform 0.18s ease;
+}
+
+#diary .photo-add-button:hover {
+    opacity: 0.85;
+}
+
+#diary .photo-add-button:active {
+    transform: scale(0.97);
+}
+
+#diary #diaryPhotos:focus-visible + .photo-add-button {
+    outline: 2px solid var(--border-theme, #e8b6c6);
+    outline-offset: 3px;
+}
+
+/* 사진 추가 버튼 */
+
+#diary .photo-section-title {
+    margin: 0 0 10px;
+    color: var(--text-theme, #514d45);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* 사진 추가 버튼: + 중복 표시 수정 */
+
+#diary .photo-add-button .photo-add-icon {
+    display: none;
+}
+
+#diary .photo-section.has-photos .photo-add-button .photo-add-text {
+    display: none;
+}
+
+#diary .photo-section.has-photos .photo-add-button .photo-add-icon {
+    display: inline;
+}
+/* 설정창 테마 선택 디자인 수정 */
+
+#settings .theme-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+}
+
+#settings .theme-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    min-height: 58px;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 1px solid var(--border-theme, #e8e2d6);
+    border-radius: 14px;
+    background: var(--card-theme-bg, #fffefa);
+    color: var(--text-theme, #514d45);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+#settings .theme-color {
+    display: block;
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 50%;
+}
+
+
+/* 네 가지 테마 미리보기 색상 */
+
+#settings .theme-yellow {
+    background-color: #f8e9a8;
+}
+
+#settings .theme-green {
+    background-color: #9ea76b;
+}
+
+#settings .theme-pink {
+    background-color: #f4dfe8;
+}
+
+#settings .theme-white {
+    background-color: #eae5d9;
+}
+
+
+/* 선택한 테마 표시 */
+
+#settings .theme-button.selected {
+    border: 2px solid var(--text-theme, #514d45);
+    font-weight: 600;
+}
+
+#settings .theme-button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================
+   테마별 메인 컬러
+========================= */
+
+/* 옐로 테마 */
+body[data-theme="yellow"] {
+    --page-bg: #feefb8;
+    --card-theme-bg: #fffaf0;
+    --text-theme: #514d45;
+    --border-theme: #e8dcae;
+
+    --curtain-blue: #c4dae8;
+    --curtain-tie-color: #91b6cb;
+
+    --activity-bg: #feefb8;
+    --record-bg: #c4dae8;
+}
+
+/* 그린 테마 */
+body[data-theme="green"] {
+    --page-bg: #efe8ca;
+    --card-theme-bg: #faf8ed;
+    --text-theme: #41462c;
+    --border-theme: #d8d8b5;
+
+    --curtain-blue: #9ea76b;
+    --curtain-tie-color: #7f8951;
+
+    --activity-bg: #9ea76b;
+    --record-bg: #efe8ca;
+}
+
+/* 핑크 테마 */
+body[data-theme="pink"] {
+    --page-theme-bg: #f3e4e3;
+    --page-bg: #f3e4e3;
+
+    --card-theme-bg: #fcf5f3;
+    --accent-theme: #e6c4c5;
+    --text-theme: #654b4a;
+    --border-theme: #e5cecc;
+
+    --curtain-theme: #d8b0b3;
+    --curtain-blue: #d8b0b3;
+    --curtain-tie-color: #b88d91;
+
+    --activity-bg: #ead0d0;
+    --record-bg: #f3e4e3;
+}
+
+/* 웜 화이트 테마 */
+body[data-theme="white"] {
+    --page-bg: #f6eddd;
+    --card-theme-bg: #fffaf2;
+    --text-theme: #514f50;
+    --border-theme: #dbd9d9;
+
+    --curtain-blue: #c7ced6;
+    --curtain-tie-color: #7f7b7f;
+
+    --activity-bg: #dbd9d9;
+    --record-bg: #c7ced6;
+}
+
+/* 커튼 묶음 끈 */
+.curtain-tie {
+    background: var(--curtain-tie-color);
+}
+
+
+/* 버튼을 눌렀을 때 통통 튀는 효과 */
+button {
+  transition: transform 0.18s ease;
+}
+
+button:active {
+  transform: translateY(-5px) scale(1.06);
+}
+
+/* 주사위 버튼과 설정 버튼은 개별 회전 효과를 사용 */
+#randomButton:active,
+.settings-button:active {
+  transform: none;
+}
+
+
+/* 주사위와 설정 아이콘이 대각선으로 꺾이는 효과 */
+@keyframes iconTilt {
+  0% {
+    transform: rotate(0deg);
+  }
+  35% {
+    transform: rotate(-25deg);
+  }
+  65% {
+    transform: rotate(18deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+#randomButton:active,
+.settings-button:active {
+  transform: scale(0.96);
+}
+
+#randomButton:active svg,
+.settings-button:active svg {
+  animation: iconTilt 0.38s ease;
+}
+
+
+/* 위쪽 두 카드: 아주 살짝 작아졌다가 제자리로 */
+@keyframes historyTopAppear {
+  from {
+    opacity: 0.92;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 아래 체크무늬 카드: 아래에서 올라오기 */
+
+
+@keyframes historyTopAppear {
+    from {
+        opacity: 1;
+        transform: scale(0.985);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes historyCardBounce {
+    from {
+        opacity: 1;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* 기록 페이지에 들어올 때만 애니메이션 실행 */
+#history.history-enter .weekly-summary,
+#history.history-enter .activity-input {
+  animation: historyTopAppear 0.38s ease-out both;
+}
+
+#history.history-enter .history-card {
+  animation: historyCardBounce 0.65s ease-out both;
+}
+
+/* 기록 카드가 여러 개면 순서대로 등장 */
+#history.history-enter .history-card:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+#history.history-enter .history-card:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+
+/* 하단바 버튼 크기 고정 */
+.tab-bar,
+.tab-bar button,
+.tab-bar button:active,
+.tab-bar button:focus {
+    transform: none !important;
+    scale: none !important;
+    animation: none !important;
+}
+
+/* 글자만 커지는 효과 유지 */
+.tab-bar button span {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.tab-bar button:active span {
+    transform: scale(1.15);
+}
+
+
+/* 주사위와 설정 아이콘 애니메이션 */
+@keyframes iconTilt {
+    0%   { transform: rotate(0deg); }
+    35%  { transform: rotate(-25deg); }
+    65%  { transform: rotate(18deg); }
+    100% { transform: rotate(0deg); }
+}
+
+#randomButton span,
+#settingsButton {
+    display: inline-block;
+    transform-origin: center;
+}
+
+#randomButton.animate-icon span,
+#settingsButton.animate-icon {
+    animation: iconTilt 0.4s ease-in-out;
+}
+
+@keyframes suggestionCardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 제안 카드 등장 애니메이션 */
+.suggestion-card {
+    animation: suggestionCardAppear 0.5s ease-out both;
+}
+
+.welcome-logo {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 8px;
+    color: #8b7567;
+    text-align: center;
+    margin-bottom: 28px;
+}

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shall we</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main>
+
+        <!-- 홈 화면 -->
+
+        <section id="home" class="page home-page">
+
+<button
+    id="settingsButton"
+    class="settings-button"
+    type="button"
+    aria-label="설정 열기"
+>
+    ⚙
+</button>
+
+
+            
+
+            <!-- 시간 / 위치 / 날씨 -->
+
+            <div class="top-info">
+
+                <p id="time">23:00</p>
+
+                <p id="weather">
+                    날씨를 확인하는 중...
+                </p>
+
+                <p id="location">
+                    위치를 확인하는 중...
+                </p>
+
+                <button
+                    id="refreshLocationButton"
+                    onclick="refreshLocation()"
+                    type="button"
+                >
+                    ↻ 현재 위치
+                </button>
+
+            </div>
+
+
+            <!-- 하늘 -->
+
+            <div class="sky">
+
+                <div class="moon"></div>
+
+                <div class="star star1"></div>
+                <div class="star star2"></div>
+                <div class="star star3"></div>
+
+<div class="curtain curtain-left">
+  <span class="curtain-tie"></span>
+</div>
+<div class="curtain curtain-right">
+  <span class="curtain-tie"></span>
+</div>
+
+
+            </div>
+
+
+            <!-- 오늘의 추천 -->
+
+            <div class="suggestion-card">
+
+                <p class="small-text">
+                    오늘은 이런 건 어때요?
+                </p>
+
+                <h1 id="suggestion"></h1>
+
+                <!-- 해보기 / 다른 활동 버튼 -->
+
+                <div class="button-row">
+
+                    <button id="tryButton" type="button">
+                        해보기
+                    </button>
+
+                    <button
+                        id="randomButton"
+                        type="button"
+                        aria-label="다른 활동 추천"
+                    >
+                        <span>🎲</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 기록 화면 -->
+
+        
+
+<section id="history" class="page">
+    <div class="history-container">
+
+        
+
+        <div class="weekly-summary">
+            <h2>이번 주 기록</h2>
+            <div id="weeklyStats"></div>
+            <div id="weeklyChart"></div>
+        </div>
+
+        <div class="activity-input">
+            <h2>오늘 한 일 추가하기</h2>
+            <input
+                type="text"
+                id="activityInput"
+                placeholder="오늘 무엇을 했나요?"
+                maxlength="100"
+            >
+            <button type="button" id="addActivityButton">
+                기록하기
+            </button>
+        </div>
+
+       
+
+        <div id="historyList"></div>
+
+    </div>
+</section>
+
+
+
+        <!-- 일기 화면 -->
+
+        
+<section id="diary" class="page">
+    <div class="diary-container">
+
+        <!-- 달력 -->
+        <div class="calendar-header">
+            <button id="prevMonth" type="button">‹</button>
+            <h2 id="monthTitle"></h2>
+            <button id="nextMonth" type="button">›</button>
+        </div>
+
+        <div class="calendar-weekdays">
+            <span>일</span><span>월</span><span>화</span>
+            <span>수</span><span>목</span><span>금</span><span>토</span>
+        </div>
+
+        <div id="calendarDays" class="calendar-days"></div>
+
+        <!-- 선택한 날짜의 일기 -->
+        <section id="diaryEditor" class="diary-editor" hidden>
+            <h2 id="diaryDateTitle">오늘의 일기</h2>
+
+            
+<div class="mood-section">
+    <div class="mood-options">
+        <button type="button" class="mood-button" data-mood="1" aria-pressed="false">
+            <span class="mood-emoji">🌧️</span>
+            <span>슬픔</span>
+        </button>
+
+        <button type="button" class="mood-button" data-mood="2" aria-pressed="false">
+            <span class="mood-emoji">☁️</span>
+            <span>우울</span>
+        </button>
+
+        <button type="button" class="mood-button" data-mood="3" aria-pressed="false">
+            <span class="mood-emoji">🌿</span>
+            <span>무난</span>
+        </button>
+
+        <button type="button" class="mood-button" data-mood="4" aria-pressed="false">
+            <span class="mood-emoji">🌷</span>
+            <span>설렘</span>
+        </button>
+
+        <button type="button" class="mood-button" data-mood="5" aria-pressed="false">
+            <span class="mood-emoji">☀️</span>
+            <span>행복</span>
+        </button>
+    </div>
+</div>
+
+
+            <!-- 줄 노트 -->
+           <!-- 그림 속 노트에 직접 일기 쓰기 -->
+            <div class="paper-notebook">
+
+                <textarea
+    
+                id="diaryText"
+                placeholder="오늘은 어떤 하루였나요?"
+                aria-label="일기 내용"
+                ></textarea>
+            </div>
+
+            <div class="photo-section">
+    <p class="photo-section-title">오늘의 사진</p>
+
+    <label for="diaryPhotos" class="photo-add-button">
+        <span class="photo-add-text">＋ 사진 추가</span>
+        <span class="photo-add-icon" aria-hidden="true">＋</span>
+    </label>
+
+    <input
+        id="diaryPhotos"
+        type="file"
+        accept="image/*"
+        multiple
+    >
+
+    <div id="diaryPhotoPreview" class="photo-preview"></div>
+</div>
+<button id="saveDiary" class="diary-save-button" type="button">
+    일기 저장하기
+</button>
+</section>
+
+
+    </main>
+
+
+<!-- 설정 화면 -->
+<section id="settings" class="page settings-page" style="display: none;">
+    <header class="settings-header">
+        <button type="button" onclick="showPage('home')" aria-label="홈으로 돌아가기">‹</button>
+        <h2>설정</h2>
+        <span></span>
+    </header>
+
+    <div class="settings-card">
+        <h3>프로필</h3>
+
+        <div class="profile-preview">
+            <img id="profilePreview" alt="프로필 사진" hidden>
+            <div id="profilePlaceholder">✦</div>
+        </div>
+
+        <label class="profile-upload-button" for="profilePhotoInput">
+            사진 변경하기
+        </label>
+        <input id="profilePhotoInput" type="file" accept="image/*" hidden>
+
+        <label for="settingsNicknameInput">닉네임</label>
+        <input
+            id="settingsNicknameInput"
+            type="text"
+            maxlength="20"
+            placeholder="닉네임을 입력해 주세요"
+        >
+
+        <button id="saveProfileButton" type="button">프로필 저장</button>
+    </div>
+
+    <div class="settings-card">
+        <h3>테마</h3>
+        <p class="settings-description">원하는 색감으로 앱을 꾸며 보세요.</p>
+
+        
+<div class="theme-options">
+    <button type="button" class="theme-button" data-theme-choice="yellow">
+        <span class="theme-color theme-yellow"></span>
+        옐로우
+    </button>
+
+    <button type="button" class="theme-button" data-theme-choice="green">
+        <span class="theme-color theme-blue"></span>
+        그린
+    </button>
+
+    <button type="button" class="theme-button" data-theme-choice="pink">
+        <span class="theme-color theme-pink"></span>
+        핑크
+    </button>
+
+    <button type="button" class="theme-button" data-theme-choice="white">
+        <span class="theme-color theme-white"></span>
+        웜 화이트
+    </button>
+</div>
+
+
+
+
+</section>
+
+    <!-- 처음 방문했을 때 나오는 환영 팝업 -->
+    
+    <div id="welcomePopup" class="welcome-overlay" hidden>
+        <div class="welcome-card" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+            <div class="welcome-logo">NudGe</div>
+
+            <p class="welcome-sparkle">✦</p>
+
+            <h2 id="welcomeTitle">어떻게 불러드릴까요?</h2>
+
+            <p class="welcome-description">
+                편하게 불러드릴 이름이나 닉네임을 알려주세요.
+            </p>
+
+            <form id="welcomeForm">
+                <input
+                    type="text"
+                    id="nicknameInput"
+                    placeholder="이름 / 닉네임"
+                    maxlength="20"
+                    autocomplete="nickname"
+                    required
+                >
+
+                <button type="submit" id="welcomeStartButton">
+                    시작하기
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+    
+
+
+    <!-- 하단 바 -->
+
+    <nav class="tab-bar">
+
+        <button
+            type="button"
+            onclick="showPage('home')"
+        >
+            홈
+        </button>
+
+        <button
+            type="button"
+            onclick="showPage('history')"
+        >
+            기록
+        </button>
+
+        <button
+            type="button"
+            onclick="showPage('diary')"
+        >
+            일기
+        </button>
+
+    </nav>
+     
+
+
+    <!-- JavaScript -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
