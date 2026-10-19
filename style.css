@@ -2428,3 +2428,24 @@ button:active {
 .theme-green {
     background: #9ea76b;
 }
+
+/* 모바일 Safari에서 하단 탭바 위치 안정화 */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  transform: none;
+  margin-bottom: 0;
+}
+
+/* 스크롤할 때 불필요한 화면 높이 변화 방지 */
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
